@@ -1,0 +1,74 @@
+{
+  "name": "bunchee-package",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./cli": "./dist/cli.js",
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "bin": {
+    "bin-cli": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "bunchee",
+    "dev": "bunchee --watch",
+    "test:cli": "node ./dist/cli.mjs -w -p 1234 -c awesome",
+    "lint": "tsc --noEmit",
+    "lint-es": "eslint --ext .ts,.tsx src --color",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "verify-commit": "verify-commit-msg",
+    "prepare": "git-scm-hooks",
+    "changelog": "npx changeloggithub@latest --all true && git add CHANGELOG.md && git commit -m 'chore: update CHANGELOG.md'",
+    "release": "bumpp -r && npm run changelog"
+  },
+  "author": "hunghg255",
+  "devDependencies": {
+    "@hunghg255/eslint-config-ts": "^0.0.8",
+    "@types/lodash": "^4.14.202",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^18.19.18",
+    "bumpp": "^9.3.0",
+    "bunchee": "^5.1.2",
+    "esno": "^0.16.3",
+    "git-scm-hooks": "^0.0.7",
+    "lodash": "^4.17.21",
+    "prettier": "^3.2.5",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "verify-commit-msg": "^0.0.10",
+    "vitest": "^0.34.6"
+  },
+  "git-hooks": {
+    "pre-commit": "npm run lint",
+    "commit-msg": "npm run verify-commit"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/hunghg255/bunchee-package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunghg255/bunchee-package"
+  },
+  "bugs": {
+    "url": "https://github.com/hunghg255/bunchee-package/issues"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  }
+}
